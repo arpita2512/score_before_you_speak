@@ -1,0 +1,15 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  back-to-top-navigation: true
+  page-navigation: false
+  
+format:
+  html:
+    theme: [cosmo, fonts.scss]
+    css: styles.css
+    toc: false
+    smooth-scroll: true
+    search: false

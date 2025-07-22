@@ -1,0 +1,18 @@
+/*-- scss:defaults --*/
+
+$font-family-sans-serif: "Libre Franklin" !default;
+
+$headings-font-family: "Jost" !default;
+
+$body-font-family: "Jost" !default;
+
+$div-font-family: "Jost" !default;
+
+$toc-font-family: "Jost" !default;
+$footer-font-family: "Jost" !default;
+
+$web-font-path: "https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" !default;
+
+@if $web-font-path {
+    @import url($web-font-path);
+}

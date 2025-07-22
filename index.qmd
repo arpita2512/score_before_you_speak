@@ -1,0 +1,30 @@
+---
+pagetitle: Score Before You Speak
+format:
+    html:
+        page-layout: article
+---
+
+:::{.column-screen-inset}
+
+<div style="text-align:center; font-size:45px; font-weight:600; font-family:Jost;"><br/>Score Before You Speak:</div>
+
+<div style="text-align:center; font-size:35px; font-weight:600; font-family:Jost;">Improving Persona Consistency
+in Dialogue Generation using Response Quality Scores</div>
+
+<div style="text-align:center; font-size:22px; font-weight:500; font-family:Jost;"><br/><a href="https://eps.leeds.ac.uk/computing/pgr/11951/arpita-saggar">Arpita Saggar</a><sup>1</sup>, <a href="https://medicinehealth.leeds.ac.uk/medicine/staff/257/dr-jonathan-darling">Jonathan C. Darling</a><sup>2</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/13320/dr-duygu-sarikaya">Duygu Sarikaya</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/184/professor-vania-dimitrova">Vania Dimitrova</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/84/professor-david-hogg">David C. Hogg</a><sup>1</sup></div>
+
+<div style="text-align:center; font-size:20px; font-weight:400; font-family:Jost;"><br/><sup>1</sup>School of Computer Science, University of Leeds<br/>
+<sup>2</sup>Leeds Institute of Medical Education, School of Medicine, University of Leeds</div>
+<br/>
+
+<div class="center-button">
+  <a href="" class="btn btn-primary mb-0 rounded-pill" role="button" style="margin-right:10px; font-weight:500; font-family:Jost;">Code</a>
+</div>
+<br/>
+
+:::
+
+## Abstract
+
+Persona-based dialogue generation is an important milestone towards building conversational artificial intelligence. Despite the ever-improving capabilities of large language models (LLMs), effectively integrating persona fidelity in conversations remains challenging due to the limited diversity in existing dialogue data. We propose a novel framework SBS (Score-Before-Speaking), which outperforms previous methods and yields improvements for both million and billion-parameter models. Unlike previous methods, SBS unifies the learning of responses and their relative quality into a single step. The key innovation is to train a dialogue model to correlate augmented responses with a quality score during training and then leverage this knowledge at inference. We use noun-based substitution for augmentation and semantic similarity-based scores as a proxy for response quality. Through extensive experiments with benchmark datasets (PERSONA-CHAT and ConvAI2), we show that score-conditioned training allows existing models to better capture a spectrum of persona-consistent dialogues. Our ablation studies also demonstrate that including scores in the input prompt during training is superior to conventional training setups.

@@ -1,2 +1,7 @@
-# score_before_you_speak
-Score Before You Speak: Improving Persona Consistency in Dialogue Generation using Response Quality Scores [ECAI 2025]
+# Project Page
+
+Source Code for the [SBS project website](https://arpita2512.github.io/)
+
+Built with [Quarto](https://quarto.org/)
+
+Template design adapted from [Nerfies](https://nerfies.github.io/)
