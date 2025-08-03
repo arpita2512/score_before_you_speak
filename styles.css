@@ -1,15 +1,17 @@
 /* css styles */
 
 p {
-    text-align: justify;
+    text-align: center;
 }
 
 h1 {
   text-align: center;
+  border-bottom: 0;
 }
 
 h2 {
   text-align: center;
+  border-bottom: 0;
 }
 
 .title {
@@ -20,157 +22,36 @@ h2 {
   text-align: center;
 }
 
-a.btn {
-  margin: 0 auto;
-  display: block;
-}
-
 .center-button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  flex-direction: row;
 }
 
 body {
   font-size: 18px;
 }
 
-/*general divs for pgpt and  dgpt*/
-div.doc{
-  color: black;  
-  background-color: #dfffd6;
-  padding: 2px 5px;
-  border: 1px solid #1f8d00;
-  border-radius: 10px;
-}
-
-div.pat{
-  color: black;  
-  background-color: #ffd3e8;
-  padding: 2px 5px;
-  border: 1px solid #8c0043;
-  border-radius: 10px;
-}
-
-/*conv specific divs for gpts*/
-
-/*dgpt*/
-
-div.dconv {
-  color: black;  
-  background-color: #dfffd6;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-bottom: 20px;
-  height: auto;
-  border: 1px solid #1f8d00;
-  border-radius: 5px;
-  text-align: justify;
-}
-
-div.dconv {
-  /* triangle dimension */
-  --a: 90deg; /* angle */
-  --h: 1em;   /* height */
-
-  --p: 70%;  /* triangle position (0%:left 100%:right) */
-  --r: 1.2em; /* the radius */
-  --b: 1px; /* border width  */
-  --c1: #1f8d00;
-  --c2: #dfffd6;
-
-  padding: 0.5em;
-  border-radius: var(--r)/var(--r) min(var(--r),var(--p) - var(--h)*tan(var(--a)/2)) min(var(--r),100% - var(--p) - var(--h)*tan(var(--a)/2)) var(--r);
-  clip-path: polygon(100% 0,0 0,0 100%,100% 100%,
-    100% min(100%,var(--p) + var(--h)*tan(var(--a)/2)),
-    calc(100% + var(--h)) var(--p),
-    100% max(0%  ,var(--p) - var(--h)*tan(var(--a)/2)));
-  background: var(--c1);
-  border-image: conic-gradient(var(--c1) 0 0) fill 0/
-    max(0%,var(--p) - var(--h)*tan(var(--a)/2)) 0 max(0%,100% - var(--p) - var(--h)*tan(var(--a)/2)) var(--r)/0 var(--h) 0 0;
-  position: relative;
-}
-div.dconv:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  padding: var(--b);
-  border-radius: inherit;
-  clip-path: polygon(100% 0,0 0,0 100%,100% 100%,
-    calc(100% - var(--b)) min(100% - var(--b),var(--p) + var(--h)*tan(var(--a)/2) - var(--b)*tan(45deg - var(--a)/4)),
-    calc(100% + var(--h) - var(--b)/sin(var(--a)/2)) var(--p),
-    calc(100% - var(--b)) max(       var(--b),var(--p) - var(--h)*tan(var(--a)/2) + var(--b)*tan(45deg - var(--a)/4)));
-  background: var(--c2) content-box;
-  border-image: conic-gradient(var(--c2) 0 0) fill 0/
-    max(var(--b),var(--p) - var(--h)*tan(var(--a)/2)) 0 max(var(--b),100% - var(--p) - var(--h)*tan(var(--a)/2)) var(--r)/0 var(--h) 0 0;
-}
-
-/*pgpt*/
-
-div.pconv{
-  color: black;  
-  background-color: #ffd3e8;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-bottom: 20px;
-  border: 1px solid #8c0043;
-  border-radius: 5px;
-  text-align: justify;
-}
-
-div.pconv {
-  /* triangle dimension */
-  --a: 90deg; /* angle */
-  --h: 1em;   /* height */
-
-  --p: 69%;  /* triangle position (0%:left 100%:right) */
-  --r: 1.2em; /* the radius */
-  --b: 1px; /* border width  */
-  --c1: #8c0043;
-  --c2: #ffd3e8;
-
-  padding: 0.5em;
-  border-radius: var(--r)/min(var(--r),var(--p) - var(--h)*tan(var(--a)/2)) var(--r) var(--r) min(var(--r),100% - var(--p) - var(--h)*tan(var(--a)/2));
-  clip-path: polygon(0 0,100% 0,100% 100%,0 100%,
-    0 min(100%,var(--p) + var(--h)*tan(var(--a)/2)),
-    calc(-1*var(--h)) var(--p),
-    0 max(0%  ,var(--p) - var(--h)*tan(var(--a)/2)));
-  background: var(--c1);
-  border-image: conic-gradient(var(--c1) 0 0) fill 0/
-    max(0%,var(--p) - var(--h)*tan(var(--a)/2)) var(--r) max(0%,100% - var(--p) - var(--h)*tan(var(--a)/2)) 0/0 0 0 var(--h);
-  position: relative;
-}
-div.pconv:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  padding: var(--b);
-  border-radius: inherit;
-  clip-path: polygon(0 0,100% 0,100% 100%,0 100%,
-    var(--b) min(100% - var(--b),var(--p) + var(--h)*tan(var(--a)/2) - var(--b)*tan(45deg - var(--a)/4)),
-    calc(var(--b)/sin(var(--a)/2) - var(--h)) var(--p),
-    var(--b) max(       var(--b),var(--p) - var(--h)*tan(var(--a)/2) + var(--b)*tan(45deg - var(--a)/4)));
-  background: var(--c2) content-box;
-  border-image: conic-gradient(var(--c2) 0 0) fill 0/
-    max(var(--b),var(--p) - var(--h)*tan(var(--a)/2)) var(--r) max(var(--b),100% - var(--p) - var(--h)*tan(var(--a)/2)) 0/0 0 0 var(--h);
-}
-
-div.dimage {
-    max-width: 25%;
-    max-height:25%;
-    float: right;
-}
-
-div.pimage {
-    max-width: 25%;
-    max-height:25%;
-    float: none;
-}
-
 div.container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+div.text {
+  text-align: justify;
+}
+
+figcaption {
+  font-weight: 500;
+  text-align: center;
+}
+
+table {
+  font-size: 18px;
+}
+
+td {
+  vertical-align: middle;
 }

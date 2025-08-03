@@ -1,30 +1,60 @@
 ---
 pagetitle: Score Before You Speak
+title-block-banner: false
+title-block-style: none
 format:
     html:
-        page-layout: article
+      grid: 
+        body-width: 1000px
 ---
 
-:::{.column-screen-inset}
+<div style="text-align:center; font-size:40px; font-weight:600; font-family:Jost;">Score Before You Speak:</div>
 
-<div style="text-align:center; font-size:45px; font-weight:600; font-family:Jost;"><br/>Score Before You Speak:</div>
+<div style="text-align:center; font-size:30px; font-weight:600; font-family:Jost;margin-bottom:1rem;line-height: 1;">Improving Persona Consistency in Dialogue Generation using Response Quality Scores</div>
 
-<div style="text-align:center; font-size:35px; font-weight:600; font-family:Jost;">Improving Persona Consistency
-in Dialogue Generation using Response Quality Scores</div>
+<div style="text-align:center; font-size:20px; font-weight:500; font-family:Jost;"><a href="https://eps.leeds.ac.uk/computing/pgr/11951/arpita-saggar">Arpita Saggar</a><sup>1</sup>, <a href="https://medicinehealth.leeds.ac.uk/medicine/staff/257/dr-jonathan-darling">Jonathan C. Darling</a><sup>2</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/13320/dr-duygu-sarikaya">Duygu Sarikaya</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/184/professor-vania-dimitrova">Vania Dimitrova</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/84/professor-david-hogg">David C. Hogg</a><sup>1</sup></div>
 
-<div style="text-align:center; font-size:22px; font-weight:500; font-family:Jost;"><br/><a href="https://eps.leeds.ac.uk/computing/pgr/11951/arpita-saggar">Arpita Saggar</a><sup>1</sup>, <a href="https://medicinehealth.leeds.ac.uk/medicine/staff/257/dr-jonathan-darling">Jonathan C. Darling</a><sup>2</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/13320/dr-duygu-sarikaya">Duygu Sarikaya</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/184/professor-vania-dimitrova">Vania Dimitrova</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/84/professor-david-hogg">David C. Hogg</a><sup>1</sup></div>
+<div style="text-align:center; font-size:20px; font-weight:400; font-family:Jost;margin-bottom:1rem;"><sup>1</sup>School of Computer Science, University of Leeds<br><sup>2</sup>Leeds Institute of Medical Education, School of Medicine, University of Leeds</div>
 
-<div style="text-align:center; font-size:20px; font-weight:400; font-family:Jost;"><br/><sup>1</sup>School of Computer Science, University of Leeds<br/>
-<sup>2</sup>Leeds Institute of Medical Education, School of Medicine, University of Leeds</div>
-<br/>
+<div style="text-align:center; font-size:20px; font-weight:600; font-family:Jost;margin-bottom:1rem;">European Conference on Artificial Intelligence (ECAI) 2025</div>
 
 <div class="center-button">
-  <a href="" class="btn btn-primary mb-0 rounded-pill" role="button" style="margin-right:10px; font-weight:500; font-family:Jost;">Code</a>
+  <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Paper</a>
+  <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Supplementary Material</a>
+  <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;">{{< fa brands github >}} Code</a>
 </div>
-<br/>
 
-:::
+<div style="text-align:center; font-size:18px; font-weight:450; font-family:Jost; line-height: 1; margin-bottom:1rem;"><b>TL;DR:</b> We present Score-Before-Speaking (SBS), a new framework for persona-consistent dialogue generation. SBS unifies supervised finetuning and quality alignment into a single step through score-conditioned training.</div>
 
-## Abstract
+![An example from the ConvAI2 dataset showing how different input scores produce responses with varying levels of persona-consistency](assets/sbs_eg.svg)
 
-Persona-based dialogue generation is an important milestone towards building conversational artificial intelligence. Despite the ever-improving capabilities of large language models (LLMs), effectively integrating persona fidelity in conversations remains challenging due to the limited diversity in existing dialogue data. We propose a novel framework SBS (Score-Before-Speaking), which outperforms previous methods and yields improvements for both million and billion-parameter models. Unlike previous methods, SBS unifies the learning of responses and their relative quality into a single step. The key innovation is to train a dialogue model to correlate augmented responses with a quality score during training and then leverage this knowledge at inference. We use noun-based substitution for augmentation and semantic similarity-based scores as a proxy for response quality. Through extensive experiments with benchmark datasets (PERSONA-CHAT and ConvAI2), we show that score-conditioned training allows existing models to better capture a spectrum of persona-consistent dialogues. Our ablation studies also demonstrate that including scores in the input prompt during training is superior to conventional training setups.
+## Introduction
+
+<div class="text">Building intelligent dialogue agents that can mimic human conversational abilities is an important milestone in advancing artificial intelligence. This requires agents to maintain a consistent persona throughout the interaction, in order to enhance engagement and gain the trust of users. Ensuring persona consistency is challenging due to the limited availability and diversity of persona-based dialogues for training models. Many approaches use a two-stage pipeline, which involves supervised finetuning followed by aligning augmented responses with preference signals. However, accurately assessing the relative quality of outputs is non-trivial. The computational complexity of these methods also reduces their applicability in resource-constrained environments. We present the SBS (Score-Before-Speaking) framework, which unifies learning desirable dialogue responses and their relative quality into a single step while outperforming previous work.</div>
+
+## Method
+
+<div class="text">SBS begins with data augmentation, where nouns in dialogue responses are masked and regenerated to create corrupted samples.  This selection is grounded in the utility of nouns for profiling. Next, we score the augmented responses by quantifying their corruption level, based on semantic similarity (BERTScore) to the original responses. All original responses are assigned the maximum score (1.0). These scores are incorporated into the input sequence during training. By enforcing score-conditioned response generation, we teach the model a mapping between responses and their quality (corruption level) and subsequently leverage this knowledge at inference.</div>
+
+![An overview of the SBS framework](assets/sbs_diagram.svg)
+
+## Results
+
+<div class="text">We conduct experiments with the PERSONA-CHAT and ConvAI2 datasets and select DialoGPT and Llama 3.1 for finetuning. For evaluation, we use standard NLG (natural language generation) metrics along with consistency score (C) to measure persona consistency of responses.</div>
+
+
+<div class="text">To check how well the trained model has learnt the correlation between responses and scores, we generate responses with lower scores in the input prompt. The expected trend, i.e., lower scores should lead to lower-quality responses and poorer metrics, is observed in most cases.</div>
+
+## Acknowledgements
+
+<div class="text">AS is supported by a UKRI-funded PhD studentship (Grant Reference: EP/S024336/1). This research made use of the Tier 2 HPC facility JADE2, funded by EPSRC (EP/T022205/1) and the Aire HPC system at the University of Leeds.</div>
+
+## BibTeX
+
+```bibtex
+@article{name,
+  author    = {Saggar, Arpita and Darling, Jonathan C. and Dimitrova, Vania and Sarikaya, Duygu and Hogg, David C.},
+  title     = {Score Before You Speak: Improving Persona Consistency in Dialogue Generation using Response Quality Scores},
+  year      = {2025},
+}
+```

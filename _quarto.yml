@@ -5,6 +5,8 @@ project:
 website:
   back-to-top-navigation: true
   page-navigation: false
+  page-footer: 
+    center: Built with <a href="https://quarto.org" target="_blank">Quarto.</a> Template design inspired by <a href="https://nerfies.github.io/" target="_blank">Nerfies.</a>
   
 format:
   html:
