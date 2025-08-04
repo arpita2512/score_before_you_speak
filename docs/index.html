@@ -121,14 +121,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<div style="text-align:center; font-size:40px; font-weight:600; font-family:Jost;">
+<div style="text-align:center; font-size:35px; font-weight:600; font-family:Jost;">
 Score Before You Speak:
 </div>
-<div style="text-align:center; font-size:30px; font-weight:600; font-family:Jost;margin-bottom:1rem;line-height: 1;">
+<div style="text-align:center; font-size:30px; font-weight:600; font-family:Jost;margin-bottom:1rem;">
 Improving Persona Consistency in Dialogue Generation using Response Quality Scores
 </div>
 <div style="text-align:center; font-size:20px; font-weight:500; font-family:Jost;">
-<a href="https://eps.leeds.ac.uk/computing/pgr/11951/arpita-saggar">Arpita Saggar</a><sup>1</sup>, <a href="https://medicinehealth.leeds.ac.uk/medicine/staff/257/dr-jonathan-darling">Jonathan C. Darling</a><sup>2</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/13320/dr-duygu-sarikaya">Duygu Sarikaya</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/184/professor-vania-dimitrova">Vania Dimitrova</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/84/professor-david-hogg">David C. Hogg</a><sup>1</sup>
+<a href="https://eps.leeds.ac.uk/computing/pgr/11951/arpita-saggar" target="_blank">Arpita Saggar</a><sup>1</sup>, <a href="https://medicinehealth.leeds.ac.uk/medicine/staff/257/dr-jonathan-darling" target="_blank">Jonathan C. Darling</a><sup>2</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/13320/dr-duygu-sarikaya" target="_blank">Duygu Sarikaya</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/184/professor-vania-dimitrova" target="_blank">Vania Dimitrova</a><sup>1</sup>, <a href="https://eps.leeds.ac.uk/computing/staff/84/professor-david-hogg" target="_blank">David C. Hogg</a><sup>1</sup>
 </div>
 <div style="text-align:center; font-size:20px; font-weight:400; font-family:Jost;margin-bottom:1rem;">
 <sup>1</sup>School of Computer Science, University of Leeds<br><sup>2</sup>Leeds Institute of Medical Education, School of Medicine, University of Leeds
@@ -137,7 +137,7 @@ Improving Persona Consistency in Dialogue Generation using Response Quality Scor
 European Conference on Artificial Intelligence (ECAI) 2025
 </div>
 <div class="center-button">
-<p><a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Paper</a> <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Supplementary Material</a> <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-brands fa-github" aria-label="github"></i> Code</a></p>
+<p><a href="" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Paper</a> <a href="" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Supplementary Material</a> <a href="https://github.com/arpita2512/score_before_you_speak" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-brands fa-github" aria-label="github"></i> Code</a></p>
 </div>
 <div style="text-align:center; font-size:18px; font-weight:450; font-family:Jost; line-height: 1; margin-bottom:1rem;">
 <b>TL;DR:</b> We present Score-Before-Speaking (SBS), a new framework for persona-consistent dialogue generation. SBS unifies supervised finetuning and quality alignment into a single step through score-conditioned training.
@@ -151,7 +151,7 @@ European Conference on Artificial Intelligence (ECAI) 2025
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="text">
-Building intelligent dialogue agents that can mimic human conversational abilities is an important milestone in advancing artificial intelligence. This requires agents to maintain a consistent persona throughout the interaction, in order to enhance engagement and gain the trust of users. Ensuring persona consistency is challenging due to the limited availability and diversity of persona-based dialogues for training models. Many approaches use a two-stage pipeline, which involves supervised finetuning followed by aligning augmented responses with preference signals. However, accurately assessing the relative quality of outputs is non-trivial. The computational complexity of these methods also reduces their applicability in resource-constrained environments. We present the SBS (Score-Before-Speaking) framework, which unifies learning desirable dialogue responses and their relative quality into a single step while outperforming previous work.
+Building intelligent dialogue agents that can mimic human conversational abilities is an important milestone in advancing artificial intelligence. This requires agents to maintain a consistent persona throughout the interaction, to enhance engagement and gain the trust of users. Ensuring persona consistency is challenging due to the limited availability and diversity of persona-based dialogues for training models. Many approaches use a two-stage pipeline, which involves supervised finetuning followed by aligning augmented responses with preference signals. However, accurately assessing the relative quality of outputs is non-trivial. The computational complexity of these methods also reduces their applicability in resource-constrained environments. We propose the SBS (Score-Before-Speaking) framework, which unifies learning desirable dialogue responses and their relative quality into a single step while outperforming previous work.
 </div>
 </section>
 <section id="method" class="level2">
@@ -169,11 +169,26 @@ SBS begins with data augmentation, where nouns in dialogue responses are masked 
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <div class="text">
-We conduct experiments with the PERSONA-CHAT and ConvAI2 datasets and select DialoGPT and Llama 3.1 for finetuning. For evaluation, we use standard NLG (natural language generation) metrics along with consistency score (C) to measure persona consistency of responses.
+We conduct experiments with the PERSONA-CHAT and ConvAI2 datasets and select DialoGPT and Llama 3.1 for finetuning. For evaluation, we use standard natural language generation metrics, along with consistency score (C) to measure persona consistency of responses. A subset of the comparative evaluation is shown below. For the complete set of results, please refer to the paper and supplementary material.
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/main_results.svg" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Results of Automatic Evaluation with the ConvAI2 dataset</figcaption>
+</figure>
+</div>
+<section id="influence-of-score-on-generation" class="level3">
+<h3 class="anchored" data-anchor-id="influence-of-score-on-generation">Influence of Score on Generation</h3>
 <div class="text">
-To check how well the trained model has learnt the correlation between responses and scores, we generate responses with lower scores in the input prompt. The expected trend, i.e., lower scores should lead to lower-quality responses and poorer metrics, is observed in most cases.
+To check how well the trained model has learnt the correlation between responses and scores, we generate responses with lower scores in the input prompt. The expected trend is that lower scores should lead to lower-quality responses and poorer metrics.
 </div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/res_score_dialogpt.svg" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>The influence of score on DialoGPT generations for the ConvAI2 dataset. The green cells indicate that the metric follows the expected trend, the red cells indicate cases where the metric contradicts the expected trend, while the grey cells represent scenarios where there is no change in the value of the metric.</figcaption>
+</figure>
+</div>
+</section>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
@@ -183,11 +198,12 @@ AS is supported by a UKRI-funded PhD studentship (Grant Reference: EP/S024336/1)
 </section>
 <section id="bibtex" class="level2">
 <h2 class="anchored" data-anchor-id="bibtex">BibTeX</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">name</span>,</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">saggar2025</span>,</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Saggar, Arpita and Darling, Jonathan C. and Dimitrova, Vania and Sarikaya, Duygu and Hogg, David C.},</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Score Before You Speak: Improving Persona Consistency in Dialogue Generation using Response Quality Scores},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2025},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">booktitle</span> = {ECAI},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2025},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
