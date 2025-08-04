@@ -19,8 +19,8 @@ format:
 <div style="text-align:center; font-size:20px; font-weight:600; font-family:Jost;margin-bottom:1rem;">European Conference on Artificial Intelligence (ECAI) 2025</div>
 
 <div class="center-button">
-  <a href="" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Paper</a>
-  <a href="" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Supplementary Material</a>
+  <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Paper</a>
+  <a href="" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Supplementary Material</a>
   <a href="https://github.com/arpita2512/score_before_you_speak" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;">{{< fa brands github >}} Code</a>
 </div>
 
