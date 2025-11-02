@@ -16,12 +16,14 @@ format:
 
 <div style="text-align:center; font-size:20px; font-weight:400; font-family:Jost;margin-bottom:1rem;"><sup>1</sup>School of Computer Science, University of Leeds<br><sup>2</sup>Leeds Institute of Medical Education, School of Medicine, University of Leeds</div>
 
-<div style="text-align:center; font-size:20px; font-weight:600; font-family:Jost;margin-bottom:1rem;">European Conference on Artificial Intelligence (ECAI) 2025</div>
+<div style="text-align:center; font-size:20px; font-weight:600; font-family:Jost;">European Conference on Artificial Intelligence (ECAI) 2025</div>
+<div style="text-align:center; font-size:18px; font-weight:400; font-family:Jost;margin-bottom:1rem;">Tuesday, October 28, Machine Learning 8, 14:30-14:45 CET</div>
 
 <div class="center-button">
   <a href="https://arxiv.org/abs/2508.06886" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Paper</a>
   <a href="https://github.com/arpita2512/score_before_you_speak/blob/main/ecai_supplementary.pdf" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;"><i class="fa-solid fa-file"></i> Supplementary Material</a>
   <a href="https://github.com/arpita2512/score_before_you_speak" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;">{{< fa brands github >}} Code</a>
+  <a href="assets/ecai_M1173.pdf" target="_blank" class="btn btn-primary rounded-pill m-1" role="button" style="font-weight:500; font-family:Jost;">{{< fa laptop >}} Slides</a>
 </div>
 
 <div style="text-align:center; font-size:18px; font-weight:450; font-family:Jost; line-height: 1; margin-bottom:1rem;"><b>TL;DR:</b> We present Score-Before-Speaking (SBS), a new framework for persona-consistent dialogue generation. SBS unifies supervised finetuning and quality alignment into a single step through score-conditioned training.</div>
