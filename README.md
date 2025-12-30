@@ -14,6 +14,8 @@ Experiments were run on two different setups (see supplementary material). Pleas
 git clone https://github.com/arpita2512/score_before_you_speak.git
 cd score_before_you_speak
 conda env create -f <environment-name>.yml
+pip install stanza
+pip install bert-score
 ```
 
 ## Data
@@ -25,7 +27,7 @@ PERSONA-CHAT and ConvAI2 are avaiable through [ParlAI](https://github.com/facebo
 ### Pos-tagging
 
 ```
-python preprocess\postag.py <path_to_txt_file> # saves pos-tagged file as json
+python preprocess/postag.py <path_to_txt_file> # saves pos-tagged file as json
 ```
 
 ### Masking
