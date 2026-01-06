@@ -8,7 +8,7 @@ Code repository for the ECAI 2025 paper **Score Before You Speak: Improving Pers
 
 ## Installation
 
-Experiments were run on two different setups (see supplementary material). Please use *persona.yml* for DialoGPT and *llama.yml* for Llama 3.1. 
+Experiments were conducted on two different setups (see supplementary material). Please use *persona.yml* for DialoGPT and *llama.yml* for Llama 3.1. Downloading Llama also requires agreeing to the community license and setting the `HF_TOKEN` environment variable.
 
 ```
 git clone https://github.com/arpita2512/score_before_you_speak.git
@@ -20,9 +20,9 @@ pip install bert-score
 
 ## Data
 
-PERSONA-CHAT and ConvAI2 are avaiable through [ParlAI](https://github.com/facebookresearch/ParlAI). We use the `<split>_self_original.txt` setting for both datasets.
+PERSONA-CHAT and ConvAI2 are avaiable through [ParlAI](https://github.com/facebookresearch/ParlAI). We use the `<split>_self_original.txt` files for all splits of both datasets.
 
-## Data Pre-processing
+## Pre-processing
 
 ### Pos-tagging
 
@@ -30,8 +30,83 @@ PERSONA-CHAT and ConvAI2 are avaiable through [ParlAI](https://github.com/facebo
 python preprocess/postag.py <path_to_txt_file> # saves pos-tagged file as json
 ```
 
+**Data Format after Pos-tagging**
+
+```
+{
+    "persona": [
+      ...
+    ],
+    "queries": [
+      ...
+    ],
+    "responses": [
+      ...
+    ],
+    "response_postags": [
+      [
+        [
+          word,
+          pos-tag
+        ],
+        ...
+      ]
+      ...
+    ]
+}
+```
+
 ### Masking
 
+```
+python preprocess/masking.py <path_to_pos_tagged_json> # saves data with filled masks as json
+```
+
+Note: Batch size for `bart-large` is set to 500 and may need to modified based on GPU memory available.
+
+**Data Format after Masking**
+
+```
+{
+    "persona": [
+      ...
+    ],
+    "queries": [
+      ...
+    ],
+    "responses": [
+      ...
+    ],
+    "aug_data": [
+      {
+        "original": ...,
+        "masked": [
+          ..., # completion for mask 1
+          ... # completion for mask n
+        ]
+      },
+    ]
+} # postags removed after masking to reduce data size 
+```
+
 ### Scoring
+
+```
+python preprocess/scoring.py <path_to_masked_json> # saves data with scores as HF dataset
+```
+
+**Data Format after Scoring**
+
+```
+{
+    'persona': ....,
+    'history': ['User: ...,
+        'Bot: ...,
+        ...
+        'User: ...],
+    'response': ...
+    'score': ...
+}
+```
 
 ## Training
