@@ -129,7 +129,17 @@ python preprocess/scoring.py <path_to_masked_json> # saves data with scores as j
 }
 ```
 
+### Convert to HF Dataset
+
+```
+python preprocess/convert_to_hf_dataset.py <path_to_json_with_scores> <model_name> # saves data as tokenized HF dataset
+```
+
+Note: Model name (2nd argument) should be either `dgpt` or `llama`
+
 ## Training
+
+Note: Wandb tracking requires an account and API key ([see here](https://docs.wandb.ai/models/quickstart#install-the-wandb-library-and-log-in))
 
 ### DialoGPT
 
@@ -139,9 +149,7 @@ python train/train_dgpt.py --exp_name <project_name_for_wandb> --dataset_path <p
 
 Set n_epochs to 15 for PERSONA-CHAT and 6 for ConvAI2.
 
-Notes: 
-- Batch size is set to 16 and may need to modified based on GPU memory available.
-- Wandb tracking requires an account and API key ([see here](https://docs.wandb.ai/models/quickstart#install-the-wandb-library-and-log-in))
+Note: Batch size is set to 16 and may need to modified based on GPU memory available.
 
 **Prompt Template**
 

@@ -8,22 +8,6 @@ import argparse
 
 block_size = 512
 
-def concatenate_and_tokenize(example, tokenizer, vocab):
-    example['input_ids'] = [vocab['<|startoftext|>']]
-    example['input_ids'].extend(tokenizer(example['persona'])['input_ids'])
-    for i in range(len(example['history'])):
-        if i%2 == 0:
-            example['input_ids'].append(vocab['<|sp1|>'])
-        else:
-           example['input_ids'].append(vocab['<|sp2|>'])
-        example['input_ids'].extend(tokenizer(example['history'][i])['input_ids'])
-
-    example['input_ids'].extend(tokenizer("Score: "+str(example['score']))['input_ids'])
-    example['input_ids'].append(vocab['<|sp2|>'])
-    example['input_ids'].extend(tokenizer("Bot: "+example['response'])['input_ids'])
-    example['input_ids'].append(vocab['<|endoftext|>'])
-    return example
-
 def group_texts(examples):
     concatenated_examples = {k: sum(examples[k], []) for k in examples.keys()}
     total_length = len(concatenated_examples[list(examples.keys())[0]])
@@ -57,17 +41,7 @@ def main(exp_name, dataset_path, n_epochs, output_path):
     
     train_data = load_from_disk(dataset_path)
     
-    kwargs = {
-      "tokenizer": tokenizer,
-      "vocab": vocab
-    }
-    processed_train_data = train_data.map(
-      concatenate_and_tokenize,
-      remove_columns=train_data.column_names,
-      num_proc=4,
-      fn_kwargs=kwargs
-    )
-    train_dataset = processed_train_data.map(group_texts, batched=True)
+    train_dataset = train_data.map(group_texts, batched=True)
     
     model = AutoModelForCausalLM.from_pretrained(model_id)
     model.resize_token_embeddings(len(vocab))
