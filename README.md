@@ -10,7 +10,7 @@ Code repository for the ECAI 2025 paper **Score Before You Speak: Improving Pers
 
 ## Installation
 
-Experiments were conducted on two different setups (see supplementary material). The main requirements are `transformers, datasets, tqdm, stanza, bert-score, accelerate, wandb`. For exact environments used, please refer to *persona.yml* for DialoGPT and *llama.yml* for Llama 3.1. Downloading Llama also requires agreeing to the community license and setting the `HF_TOKEN` environment variable.
+Experiments were conducted on two different setups (see supplementary material). The main requirements are `torch, transformers, datasets, tqdm, stanza, bert-score, accelerate, wandb`. For exact environments used, please refer to *persona.yml* for DialoGPT and *llama.yml* for Llama 3.1. Downloading Llama also requires agreeing to the community license and setting the `HF_TOKEN` environment variable.
 
 ```
 git clone https://github.com/arpita2512/score_before_you_speak.git
@@ -94,20 +94,38 @@ Note: Batch size for `bart-large` is set to 500 and may need to modified based o
 ### Scoring
 
 ```
-python preprocess/scoring.py <path_to_masked_json> # saves data with scores as HF dataset
+python preprocess/scoring.py <path_to_masked_json> # saves data with scores as json
 ```
 
 **Data Format after Scoring**
 
 ```
 {
-    'persona': ....,
-    'history': ['User: ...,
-        'Bot: ...,
-        ...
-        'User: ...],
-    'response': ...
-    'score': ...
+    "persona": [
+      ...
+    ],
+    "queries": [
+      ...
+    ],
+    "responses": [
+      ...
+    ],
+    "aug_data": [
+      {
+        "original": ...,
+        "masked": [
+          {
+            "sent": ... ,
+            "score": ...,
+          },
+          {
+            "sent": ... ,
+            "score": ...,
+          }, 
+          ...
+        ]
+      },
+    ]
 }
 ```
 
@@ -127,23 +145,23 @@ Notes:
 
 **Prompt Template**
 
-<|startoftext|>Your persona: *persona information*<|sp1|>User: *user utterance 1*<|sp2|>Bot: *bot utterance 1*<|sp1|>User: *user utterance 2 Score: ..*<|sp2|>Bot: *bot utterance 2*<|endoftext|>
+> <|startoftext|>Your persona: *persona information*<|sp1|>User: *user utterance 1*<|sp2|>Bot: *bot utterance 1*<|sp1|>User: *user utterance 2 Score: ..*<|sp2|>Bot: *bot utterance 2*<|endoftext|>
 
 ### Llama 3.1
 
 **Prompt Template** (based on [Llama 3.1 model card](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/#prompt-template))
 
-<|begin_of_text|><|start_header_id|>system<|end_header_id|>
-
-Cutting Knowledge Date: December 2023
-Today Date: 26 Jul 2024
-
-*persona information*..<|eot_id|><|start_header_id|>user<|end_header_id|>
-
-*user utterance 1*<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-
-*bot utterance 1*<|eot_id|><|start_header_id|>user<|end_header_id|>
-
-*user utterance 2 Score: ..*<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-
-*bot utterance 2*<|eot_id|>
+><|begin_of_text|><|start_header_id|>system<|end_header_id|>
+>
+>Cutting Knowledge Date: December 2023
+>Today Date: 26 Jul 2024
+>
+>*persona information*..<|eot_id|><|start_header_id|>user<|end_header_id|>
+>
+>*user utterance 1*<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+>
+>*bot utterance 1*<|eot_id|><|start_header_id|>user<|end_header_id|>
+>
+>*user utterance 2 Score: ..*<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+>
+>*bot utterance 2*<|eot_id|>

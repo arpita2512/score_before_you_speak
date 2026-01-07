@@ -1,5 +1,4 @@
 from pathlib import Path
-from datasets import Dataset
 import json
 from tqdm import tqdm
 import sys
@@ -54,71 +53,8 @@ def main(file_path):
                 j += 1
             aug['masked'] = masked_with_scores
     
-    # convert to HF dataset 
-    personas, histories, responses, scores = [], [], [], []
-
-    if split == "train":
-        for chat in tqdm(data):
-            persona = "Your persona:"
-            for p in chat['persona']:
-                persona += " " + p
-            personas.extend([persona]*len(chat['responses']))
-            full_dialog = [x for xs in zip(chat['queries'], chat['responses']) for x in xs]
-            for resp in chat['responses']:
-                idx = full_dialog.index(resp)
-                hist = []
-                temp = full_dialog[:idx] 
-                for i in range(len(temp)):
-                    if i%2 == 0:
-                        hist.append("User: "+temp[i])
-                    else:
-                        hist.append("Bot: "+temp[i])
-                histories.append(hist)
-            responses.extend(chat['responses'])
-            scores.extend([1.0]*len(chat['responses']))
-
-            if len(chat['aug_data']) == 0:
-                continue
-
-            for aug in chat['aug_data']:
-                idx = responses.index(aug['original'])
-                for masked in aug['masked']:
-                    personas.append(personas[idx])
-                    histories.append(histories[idx])
-                    responses.append(masked['sent'])
-                    scores.append(masked['score'])
-            assert len(personas) == len(responses) == len(histories) == len(scores), "Check code"
-    
-    else: # val or test split
-        for chat in tqdm(data):
-            persona = "Your persona:"
-            for p in chat['persona']:
-                persona += " " + p
-            personas.extend([persona]*len(chat['responses']))
-            full_dialog = [x for xs in zip(chat['queries'], chat['responses']) for x in xs]
-            for resp in chat['responses']:
-                idx = full_dialog.index(resp)
-                hist = []
-                temp = full_dialog[:idx] 
-                for i in range(len(temp)):
-                    if i%2 == 0:
-                        hist.append("User: "+temp[i])
-                    else:
-                        hist.append("Bot: "+temp[i])
-                histories.append(hist)
-            responses.extend(chat['responses'])
-            scores.extend([1.0]*len(chat['responses']))
-            assert len(personas) == len(responses) == len(histories) == len(scores), "Check code"
-    
-    ds = Dataset.from_dict({
-        'persona': personas,
-        'history': histories,
-        'response': responses,
-        'score': scores
-    })
-
-    # save to disk
-    ds.save_to_disk(f"{split}_final")
+    with open(f'{split}_scores.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=3)
 
 if __name__ == "__main__":
     main(sys.argv[1])
