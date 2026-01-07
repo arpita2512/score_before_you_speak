@@ -6,9 +6,11 @@
 
 Code repository for the ECAI 2025 paper **Score Before You Speak: Improving Persona Consistency in Dialogue Generation using Response Quality Scores**
 
+![](assets/overview.png)
+
 ## Installation
 
-Experiments were conducted on two different setups (see supplementary material). Please use *persona.yml* for DialoGPT and *llama.yml* for Llama 3.1. Downloading Llama also requires agreeing to the community license and setting the `HF_TOKEN` environment variable.
+Experiments were conducted on two different setups (see supplementary material). The main requirements are `transformers, datasets, tqdm, stanza, bert-score, accelerate`. For exact environments used, please refer to *persona.yml* for DialoGPT and *llama.yml* for Llama 3.1. Downloading Llama also requires agreeing to the community license and setting the `HF_TOKEN` environment variable.
 
 ```
 git clone https://github.com/arpita2512/score_before_you_speak.git
@@ -20,7 +22,7 @@ pip install bert-score
 
 ## Data
 
-PERSONA-CHAT and ConvAI2 are avaiable through [ParlAI](https://github.com/facebookresearch/ParlAI). We use the `<split>_self_original.txt` files for all splits of both datasets.
+PERSONA-CHAT and ConvAI2 are available through [ParlAI](https://github.com/facebookresearch/ParlAI). We use the `<split>_self_original.txt` files for all splits of both datasets.
 
 ## Pre-processing
 
