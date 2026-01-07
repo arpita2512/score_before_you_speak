@@ -157,6 +157,12 @@ Note: Batch size is set to 16 and may need to modified based on GPU memory avail
 
 ### Llama 3.1
 
+```
+python train/train_llama.py --exp_name <project_name_for_wandb> --dataset_path <path_to_HF_dataset> --n_epochs <number_of_epochs> --output_path <save_path_for_model>
+```
+
+Set n_epochs to 3 for PERSONA-CHAT and 2 for ConvAI2.
+
 **Prompt Template** (based on [Llama 3.1 model card](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/#prompt-template))
 
 ><|begin_of_text|><|start_header_id|>system<|end_header_id|>
