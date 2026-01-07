@@ -64,7 +64,7 @@ python preprocess/postag.py <path_to_txt_file> # saves pos-tagged file as json
 python preprocess/masking.py <path_to_pos_tagged_json> # saves data with filled masks as json
 ```
 
-Note: Batch size for `bart-large` is set to 500 and may need to modified based on GPU memory available.
+- Batch size for `bart-large` is set to 500 and may need to modified based on GPU memory available.
 
 **Data Format after Masking**
 
@@ -135,7 +135,7 @@ python preprocess/scoring.py <path_to_masked_json> # saves data with scores as j
 python preprocess/convert_to_hf_dataset.py <path_to_json_with_scores> <model_name> # saves data as tokenized HF dataset
 ```
 
-Note: Model name (2nd argument) should be either `dgpt` or `llama`
+- Model name (2nd argument) should be either `dgpt` or `llama`
 
 ## Training
 
@@ -147,9 +147,8 @@ Note: Wandb tracking requires an account and API key ([see here](https://docs.wa
 python train/train_dgpt.py --exp_name <project_name_for_wandb> --dataset_path <path_to_HF_dataset> --n_epochs <number_of_epochs> --output_path <save_path_for_model>
 ```
 
-Set n_epochs to 15 for PERSONA-CHAT and 6 for ConvAI2.
-
-Note: Batch size is set to 16 and may need to modified based on GPU memory available.
+- Set n_epochs to 15 for PERSONA-CHAT and 6 for ConvAI2.
+- Batch size is set to 16 and may need to modified based on GPU memory available.
 
 **Prompt Template**
 
@@ -161,7 +160,7 @@ Note: Batch size is set to 16 and may need to modified based on GPU memory avail
 python train/train_llama.py --exp_name <project_name_for_wandb> --dataset_path <path_to_HF_dataset> --n_epochs <number_of_epochs> --output_path <save_path_for_model>
 ```
 
-Set n_epochs to 3 for PERSONA-CHAT and 2 for ConvAI2.
+- Set n_epochs to 3 for PERSONA-CHAT and 2 for ConvAI2.
 
 **Prompt Template** (based on [Llama 3.1 model card](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_1/#prompt-template))
 
