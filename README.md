@@ -16,6 +16,7 @@ Experiments were conducted on two different setups (see supplementary material).
 git clone https://github.com/arpita2512/score_before_you_speak.git
 cd score_before_you_speak
 conda env create -f <environment-name>.yml
+conda activate <environment-name>
 pip install stanza
 pip install bert-score
 ```
